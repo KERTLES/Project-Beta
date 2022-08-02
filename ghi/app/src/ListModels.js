@@ -1,6 +1,26 @@
-function ListModels(props) {
-  return (
-    <table className="table table-striped">
+import React from "react";
+
+class ListModels extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      models: []
+    }
+  }
+
+  async componentDidMount() {
+    const url = 'http://localhost:8100/api/models/';
+    const response = await fetch(url);
+    if (response.ok) {
+      const data = await response.json();
+      this.setState({ models: data.models })
+    }
+  }
+
+
+  render() {
+    return (
+      <table className="table table-striped">
       <thead>
         <tr>
           <th>Name</th>
@@ -9,23 +29,18 @@ function ListModels(props) {
         </tr>
       </thead>
       <tbody>
-        {props.models.map((model) => {
-          
+        {this.state.models.map(model => {
           return (
-            
-            <tr>
-              <td>{model.name}</td>
-              <td>{model.manufacturer.name}</td>
-              <td>
-                {" "}
-                <img src={model.picture_url} alt="car" />
-              </td>
+            <tr key={model.id}>
+              <td>{ model.name }</td>
+              <td>{ model.manufacturer.name}</td>
+              <td><img src={model.picture_url} alt="car" /></td>
             </tr>
           );
         })}
       </tbody>
     </table>
-  );
+    );
+  }
 }
-
 export default ListModels;
