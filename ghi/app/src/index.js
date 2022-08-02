@@ -5,31 +5,6 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // async function loadAutoMobiles() {
 //     const response = await fetch('http://localhost:8100/api/automobiles/');
 //   if (response.ok){
@@ -72,3 +47,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // loadModels()
 
 
+root.render(
+<React.StrictMode>
+  <App />
+</React.StrictMode>
+);
