@@ -3,6 +3,7 @@ import MainPage from './MainPage';
 import ListModels from './ListModels';
 import ManufacturerList from './ManufacturerList';
 import ManufacturerCreateForm from './ManufacturerCreateForm';
+import AutomobileInventoryList from './AutomobileInventoryList';
 import Nav from './Nav';
 import ModelForm from './CreateModelForm';
 import ListAuto from './ListAuto';
@@ -25,6 +26,9 @@ function App(props) {
           </Route>
           <Route path="auto/" index element={<ListAuto autos={props.autos} />} /> */}
           <Route path="" element={<CreateAutoForm />} />
+          <Route path='inventory'>
+            <Route index element={<AutomobileInventoryList automobiles={props.automobiles} />}/>
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>
