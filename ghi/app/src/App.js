@@ -3,6 +3,7 @@ import MainPage from './MainPage';
 import ListModels from './ListModels';
 import ManufacturerList from './ManufacturerList';
 import ManufacturerCreateForm from './ManufacturerCreateForm';
+import AutomobileInventoryList from './AutomobileInventoryList';
 import Nav from './Nav';
 import ModelForm from './CreateModelForm';
 
@@ -19,6 +20,9 @@ function App(props) {
           <Route path="manufacturer">
             <Route index element={<ManufacturerList manufacturers={props.manufacturers} />} />
             <Route path="new" element={<ManufacturerCreateForm />}/>
+          </Route>
+          <Route path='inventory'>
+            <Route index element={<AutomobileInventoryList automobiles={props.automobiles} />}/>
           </Route>
         </Routes>
       </div>

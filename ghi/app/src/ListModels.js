@@ -20,6 +20,8 @@ class ListModels extends React.Component {
 
   render() {
     return (
+      <>
+      <h2>Vehicle models</h2>
       <table className="table table-striped">
       <thead>
         <tr>
@@ -40,6 +42,7 @@ class ListModels extends React.Component {
         })}
       </tbody>
     </table>
+    </>
     );
   }
 }
