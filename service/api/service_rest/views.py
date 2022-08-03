@@ -36,13 +36,14 @@ def api_list_technicians(request):
     if request.method == "GET":
         technicians = Technician.objects.all()
         return JsonResponse(
-            {"technicions": technicians},
+            technicians,
             encoder=TechnicianEncoder,
+            safe=False
         )
     else:
         try:
             content = json.loads(request.body)
-            technician = Technician.objects.create(**content)
+            technicians = Technician.objects.create(**content)
             return JsonResponse(
                 technician,
                 encoder=TechnicianEncoder,
@@ -62,8 +63,9 @@ def api_list_appointments(request):
     if request.method == "GET":
         appointments = Appointment.objects.all()
         return JsonResponse(
-            {"appointments": appointments},
-            encoder=AppointmentEncoder
+            appointments,
+            encoder=AppointmentEncoder,
+            safe=False
         )
     else:
         content = json.loads(request.body)
