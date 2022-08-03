@@ -4,7 +4,7 @@ from django.db.models import QuerySet
 from datetime import datetime
 
 
-class DateEncoder(JSONEncoder):
+class DateTimeEncoder(JSONEncoder):
     def default(self, o):
         if isinstance(o, datetime):
             return o.isoformat()
@@ -20,7 +20,7 @@ class QuerySetEncoder(JSONEncoder):
             return super().default(o)
 
 
-class ModelEncoder(DateEncoder, QuerySetEncoder, JSONEncoder):
+class ModelEncoder(DateTimeEncoder, QuerySetEncoder, JSONEncoder):
     encoders = {}
 
     def default(self, o):

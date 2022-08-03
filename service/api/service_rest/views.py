@@ -20,8 +20,9 @@ class AppointmentEncoder(ModelEncoder):
     properties = [
         "vin",
         "customer",
-        "date",
         "time",
+        "date",
+        # 'datetime', 
         "technician",
         "reason",
         "vip",
