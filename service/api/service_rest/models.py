@@ -1,5 +1,3 @@
-from tkinter import CASCADE
-from black import mask_cell
 from django.db import models
 
 class AutomobileVO(models.Model):

@@ -10,7 +10,7 @@ class ServiceAppointmentForm extends React.Component {
             date: '',
             time: '',
             technician: '',
-            technician: [],
+            technicians: [],
             reason: "",
 
         };
@@ -27,8 +27,8 @@ class ServiceAppointmentForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
-        delete data.technician
-
+        delete data.technicians
+        
         const appointmentUrl = 'http://localhost:8080/api/appointments/';
         const fetchConfig = {
           method: "post",
@@ -61,7 +61,7 @@ class ServiceAppointmentForm extends React.Component {
     const response = await fetch(url);
     if (response.ok) {
         const data = await response.json();
-        this.setState({technician: data});
+        this.setState({technicians: data});
         }
     }
 
@@ -108,19 +108,19 @@ class ServiceAppointmentForm extends React.Component {
                 <label htmlFor="customer">Customer name</label>
               </div>
               <div className="form-floating mb-3">
-                <input onChange={this.handleDateChange} value={this.state.date} placeholder="Date" type="date" id="date" className="form-control" />
+                <input onChange={this.handleDateChange} value={this.state.date} placeholder="Date" type="text" id="date" className="form-control" />
                 <label htmlFor="date">Date</label>
               </div>
               <div className="form-floating mb-3">
-                <input onChange={this.handleTimeChange} value={this.state.time} placeholder="Time" required type="time" id="time" className="form-control" />
+                <input onChange={this.handleTimeChange} value={this.state.time} placeholder="Time" required type="text" id="time" className="form-control" />
                 <label htmlFor="time">Time</label>
               </div>
               <div className="mb-3">
                 <select onChange={this.handleTechnicianChange} required className="form-select" id="technician">
                   <option value="">Technician</option>
-                  {this.state.technician.map(tech =>{
+                  {this.state.technicians.map(tech =>{
                     return (
-                        <option value={tech.employee_number} key={tech.id}>
+                        <option value={tech.id} key={tech.id}>
                             {tech.name}
                         </option>
                     )

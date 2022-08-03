@@ -70,6 +70,7 @@ def api_list_appointments(request):
     else:
         content = json.loads(request.body)
         try:
+            
             technician = Technician.objects.get(employee_number=content["technician"])
             content["technician"] = technician
         except Technician.DoesNotExist:
