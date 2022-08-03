@@ -1,4 +1,7 @@
 import React from "react";
+// import {format, parse} from "isoformat";
+// import Moment from 'React-Moment'
+
 
 
 class ServiceAppointmentForm extends React.Component {
@@ -9,6 +12,7 @@ class ServiceAppointmentForm extends React.Component {
             customer: '',
             date: '',
             time: '',
+            // datetime: '', 
             technician: '',
             technicians: [],
             reason: "",
@@ -27,8 +31,18 @@ class ServiceAppointmentForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
+
+        // let date = format(new Date(Date.UTC(data.date, data.time))) // "2001-01-01"
+        // let time = format(new Date)
+// format(new Date(Date.UTC(2020, 0, 1, 12, 23))) // "2020-01-01T12:23Z"
+       
         delete data.technicians
+        console.log(data)
         
+        // delete data.dates
+        // delete data.time
+        
+
         const appointmentUrl = 'http://localhost:8080/api/appointments/';
         const fetchConfig = {
           method: "post",
@@ -59,6 +73,7 @@ class ServiceAppointmentForm extends React.Component {
     async componentDidMount() {
     const url = 'http://localhost:8080/api/technicians/'
     const response = await fetch(url);
+    console.log(response)
     if (response.ok) {
         const data = await response.json();
         this.setState({technicians: data});
@@ -82,6 +97,7 @@ class ServiceAppointmentForm extends React.Component {
         const value = event.target.value;
         this.setState({time: value});
     }
+
     handleTechnicianChange(event) {
         const value = event.target.value;
         this.setState({technician: value});
@@ -120,7 +136,7 @@ class ServiceAppointmentForm extends React.Component {
                   <option value="">Technician</option>
                   {this.state.technicians.map(tech =>{
                     return (
-                        <option value={tech.id} key={tech.id}>
+                        <option value={tech.employee_number} key={tech.id}>
                             {tech.name}
                         </option>
                     )

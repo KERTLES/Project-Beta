@@ -20,11 +20,12 @@ class AppointmentEncoder(ModelEncoder):
     properties = [
         "vin",
         "customer",
-        "date",
         "time",
+        "date", 
         "technician",
         "reason",
         "vip",
+        "id",
     ]
     encoders = {
         "technician": TechnicianEncoder(),
@@ -84,3 +85,32 @@ def api_list_appointments(request):
             encoder=AppointmentEncoder,
             safe=False,
         )
+
+
+
+@require_http_methods(["GET", "DELETE"])
+def api_show_appointments(request, pk):
+    if request.method == "GET":
+        try:
+            appointment = Appointment.objects.get(id=pk)
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentEncoder,
+                safe=False,
+            )
+        except Appointment.DoesNotExist:
+            response = JsonResponse({"message": "Does not exist"})
+            response.status_code = 404
+            return response
+    elif request.method == "DELETE":
+        try:
+            appointment = Appointment.objects.get(id=pk)
+            appointment.delete()
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentEncoder,
+                safe=False,
+            )
+        except Appointment.DoesNotExist:
+            return JsonResponse({"message": "Does not exist"})
+    
