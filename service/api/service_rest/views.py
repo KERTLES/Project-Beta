@@ -45,7 +45,7 @@ def api_list_technicians(request):
             content = json.loads(request.body)
             technicians = Technician.objects.create(**content)
             return JsonResponse(
-                technician,
+                technicians,
                 encoder=TechnicianEncoder,
                 safe=False,
             )
