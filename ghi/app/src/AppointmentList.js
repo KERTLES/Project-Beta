@@ -40,7 +40,7 @@ class AppointmentList extends React.Component {
             <tr key={auto.id}>
               <td>{ auto.vin }</td>
               <td>{ auto.customer }</td>
-              <td>{ auto.date}</td>
+              <td>{ auto.date.substring(0, 10)}</td>
               <td>{ auto.time}</td>
               <td>{ auto.technician.name}</td>
               <td>{ auto.reason }</td>

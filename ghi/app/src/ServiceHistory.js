@@ -13,9 +13,14 @@ function ServiceHistory(props){
     const handleFilter = (event) => {
        const searchWord = event.target.value;
        const newFilter = items.filter((value) => {
-            return value.vin.includes(searchWord);
+            return value.vin.toLowerCase().includes(searchWord.toLowerCase());
        });
+
+       if (searchWord === "") {
+            setFilteredData([]);
+       } else {
        setFilteredData(newFilter);
+       }
     };
 
     useEffect(() => {
@@ -42,7 +47,6 @@ function ServiceHistory(props){
                     <div className="search">
                         <i className="fa fa-search"></i>
                         <input type="text" className="form-control" placeholder="Enter VIN" onChange={handleFilter} />
-                        <button className="btn btn-primary">Search VIN</button>
                     </div>
                     </div>
                 </div>
@@ -65,7 +69,7 @@ function ServiceHistory(props){
             <tr key={item.id}>
               <td>{ item.vin }</td>
               <td>{ item.customer }</td>
-              <td>{ item.date }</td>
+              <td>{ item.date.substring(0, 10) }</td>
               <td>{ item.time }</td>
               <td>{ item.technician.name }</td>
               <td>{ item.reason }</td>
