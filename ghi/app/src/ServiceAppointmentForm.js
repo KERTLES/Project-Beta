@@ -11,8 +11,7 @@ class ServiceAppointmentForm extends React.Component {
             vin: '',
             customer: '',
             date: '',
-            time: '',
-            // datetime: '', 
+            time: '', 
             technician: '',
             technicians: [],
             reason: "",
@@ -30,14 +29,9 @@ class ServiceAppointmentForm extends React.Component {
 
     async handleSubmit(event) {
         event.preventDefault();
-        const data = {...this.state};
-
-        // let date = format(new Date(Date.UTC(data.date, data.time))) // "2001-01-01"
-        // let time = format(new Date)
-// format(new Date(Date.UTC(2020, 0, 1, 12, 23))) // "2020-01-01T12:23Z"
-       
+        const data = {...this.state};       
         delete data.technicians
-        console.log(data)
+
         
         // delete data.dates
         // delete data.time

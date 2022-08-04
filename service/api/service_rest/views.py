@@ -26,6 +26,7 @@ class AppointmentEncoder(ModelEncoder):
         "reason",
         "vip",
         "id",
+        "status"
     ]
     encoders = {
         "technician": TechnicianEncoder(),
@@ -117,4 +118,16 @@ def api_show_appointments(request, pk):
             )
         except Appointment.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
+
+
+
+@require_http_methods(["PUT"])
+def api_appointment_status(request, pk):
+    Appointment.objects.filter(id=pk).update(status=False)
+    appointment = Appointment.objects.get(id=pk)
+    return JsonResponse(
+        appointment,
+        encoder=AppointmentEncoder,
+        safe=False,
+    )
     

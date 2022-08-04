@@ -103,7 +103,7 @@ class ModelForm extends React.Component {
                             </div>
 
                             <div className="form-floating mb-3">
-                                <input onChange={this.handlePictureUrlChange} placeholder="Picture Url" required type="text" name="picture_url" id="picture_url" className="form-control" />
+                                <input onChange={this.handlePictureUrlChange} placeholder="Picture Url"  type="text" name="picture_url" id="picture_url" className="form-control" />
                                 <label htmlFor="picture_url">Picture url</label>
                             </div>
 
