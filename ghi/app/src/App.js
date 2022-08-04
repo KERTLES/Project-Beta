@@ -10,6 +10,8 @@ import Nav from './Nav';
 import ModelForm from './CreateModelForm';
 import ListAuto from './ListAuto';
 import CreateAutoForm from './CreateAutoForm'
+import CustomerForm from './CreateCustomerForm';
+import CreateSalesPersonForm from './CreateSalesPersonForm';
 
 
 function App(props) {
@@ -21,7 +23,8 @@ function App(props) {
           <Route path="/" element={<MainPage />} />
           <Route path="models" element={<ListModels models={props.models} />} />
           <Route path="models/new" element={<ModelForm />} />
-         
+          <Route path="customers/create" element={<CustomerForm/>} />
+          <Route path="salesmen/create" element={<CreateSalesPersonForm/>} />
           <Route path="manufacturer">
           <Route index element={<ManufacturerList manufacturers={props.manufacturers} />} />
           <Route path="new" element={<ManufacturerCreateForm />} />
@@ -35,6 +38,7 @@ function App(props) {
             <Route path="technician" element={<CreateTechnicianForm />} />
             <Route path='new' element={<ServiceAppointmentForm />} />
           </Route>
+          
         </Routes>
       </div>
     </BrowserRouter>
