@@ -77,8 +77,8 @@ class CreateSalesPersonForm extends React.Component {
                             <button className="btn btn-primary">Create</button>
                         </form>
                     </div>
-                </div >
-            </div >
+                </div>
+            </div>
 
         )
     }
