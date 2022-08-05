@@ -23,37 +23,42 @@ class ListSales extends React.Component {
     }
   }
 
-  render() {
-    return (
-      <>
-        <h2>Sales History</h2>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Sales Person</th>
-              <th>Employee number</th>
-              <th>Purchaser Name</th>
-              <th>VIN</th>
-              <th>Sale Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.sales.map((sale) => {
-              return (
-                <tr key={sale.vin.vin}>
-                  <td>{sale.sales_person.name}</td>
-                  <td>{sale.sales_person.employee_number}</td>
-                  <td>{sale.customer.name}</td>
-                  <td>{sale.vin.vin}</td>
 
-                  <td>{`$${toString(sale.price)}`}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </>
-    );
-  }
+
+
+
+    render() {
+        return (
+            <>
+                <h2>Sales History</h2>
+                <table className="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Sales Person</th>
+                            <th>Employee number</th>
+                            <th>Purchaser Name</th>
+                            <th>VIN</th>
+                            <th>Sale Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.sales?.map(sale => {
+                            return (
+                                <tr key={sale.vin.vin}>
+                                    <td>{sale.sales_person.name}</td>
+                                    <td>{sale.sales_person.employee_number}</td>
+                                    <td>{sale.customer.name}</td>
+                                    <td>{sale.vin.vin}</td>
+
+                                    <td>{`$${toString(sale.price)}`}</td>
+
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </>
+        );
+    }
 }
 export default ListSales;
