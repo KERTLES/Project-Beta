@@ -1,3 +1,4 @@
+
 import django
 import os
 import sys
@@ -17,22 +18,21 @@ from sales_rest.models import AutomobileVO
 def get_vins():
     response = requests.get("http://inventory-api:8000/api/automobiles/")
     print(response)
- 
+
     content = json.loads(response.content)
-    # print(content)
-    # listofAutos =  content["autos"]
-    # for automobile in content["autos"]:
-        # AutomobileVO.objects.update_or_create(
-        #     vin=automobile["vin"],
-            # defaults={"name": automobile["model"]["name"]},
-        # )
+
+    for automobile in content["autos"]:
+        AutomobileVO.objects.update_or_create(
+            vin=automobile["vin"],
+            defaults={"name": automobile["model"]["name"]},
+        )
 
 
 def poll():
     while True:
         print('Sales poller polling for data')
         try:
-            # get_vins()
+            get_vins()
             pass
         except Exception as e:
             print(e, file=sys.stderr)
