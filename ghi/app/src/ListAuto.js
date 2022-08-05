@@ -38,8 +38,6 @@ class ListAuto extends React.Component {
             
                     {this.state.automobiles?.map(automobile => {
 
-
-                        // read property of hats without checking for null 
                         return (
 
 

@@ -21,7 +21,6 @@ class CreateAutoForm extends React.Component {
 
     handleModelsChange(event) {
         const value = event.target.value;
-        // console.log(value)
         this.setState({ model: value })
     }
 
@@ -43,7 +42,6 @@ class CreateAutoForm extends React.Component {
     async handleOnSubmit(event){
         event.preventDefault(); 
         const data = {...this.state};
-        // console.log(data)
         delete data.models 
         const model_id = data.model 
         data["model_id"] = model_id
@@ -89,10 +87,10 @@ class CreateAutoForm extends React.Component {
 
         if (response.ok) {
             const data = await response.json();
-            // console.log(data)
+           
 
             this.setState({ models: data.models })
-            // console.log(this.state.models)
+         
         }
     }
 

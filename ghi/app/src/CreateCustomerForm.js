@@ -34,7 +34,6 @@ class CustomerForm extends React.Component {
 
     async handleOnSubmit(event){
         event.preventDefault()
-        // this.setState({ phone_number: value })
         const data = {...this.state}
 
 
