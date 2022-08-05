@@ -25,8 +25,9 @@ class SalesHistory extends React.Component {
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
+            console.log(data)
 
-            this.setState({ sales_persons: data["sales person"] })
+            this.setState({ sales_persons: data["sales_persons"] })
         }
 
 
@@ -43,6 +44,7 @@ class SalesHistory extends React.Component {
 
         const response = await fetch(url)
         const results = await response.json()
+        console.log(results.sales_record)
 
         this.setState({ search_results: results.sales_record })
 
@@ -89,7 +91,7 @@ class SalesHistory extends React.Component {
                                         <td>{sale.sales_person.name}</td>
                                         <td>{sale.customer.name}</td>
                                         <td>{sale.vin.vin}</td>
-                                        <td>{`${toString(sale.price)}`}</td>
+                                        <td>${toString(sale.price)}</td>
                                     </tr>
                                 );
                             }

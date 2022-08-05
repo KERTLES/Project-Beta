@@ -20,8 +20,10 @@ microservice, here.
 Explain your models and integration with the inventory
 microservice, here.
 
-1. Set up different views needed to list and create automobiles in Inventory.
-2. Automobile has foreign key to the vehicle model, and vehicle model has a foreign key to the manufacturer. 
+
+
+1. Set up different views needed to list and create automobiles in Inventory. And make sure that there is an object for each model created in the database. 
+2. Automobile has foreign key to the vehicle model, and vehicle model has a foreign key to the manufacturer. So 
 3. Create a object of each in database to start working on Sales Microservice.
 4. Sales microservices - broken down into 4 models; Customer, Sales Person, Sale Record, and Automobile Value object to the autombileInventory model. The first 3 are entites and have ids. The last one is just a value object that keeps track of polled Vin data.  
 5. Sales, Services, and Invetory are each independent services with their own bounded contexts. Sales and Inventory are microservices that must poll for data from the inventory database when needed.  
@@ -42,7 +44,17 @@ microservice, here.
 20. Trouble shoot
 21. Create drop down for sales record and filter by employee id. 
 
-Sketch - see seperate
+Sketch  for different services. 
+- https://excalidraw.com/#json=jI9x8lJjzK1lHMUb7hFqT,HLQst6ji-O3tNmsEUKC3vA
+
+- Invividual bounded contexts: sales, services, and Inventory 
+Reason: Each of the models in each service do not require any data from each other except for the automobile Vin number so it makes sense to give them independent databases. 
+
+- Aggregate for sales microservice: Sales record, Customer, automobileVO, and Sales person. 
+- Sales record is final product we see and maintains consistency and prevents duplicates of objects in database which is why it's the aggregate root.  
+- Value object: AutomobileVO - identifier is the vin 
+- Entities: Customer + Sales person. Both have unique ids/identifiers and can't be defined by property alone. 
+
 
 
 

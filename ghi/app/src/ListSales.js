@@ -19,7 +19,7 @@ class ListSales extends React.Component {
     if (response.ok) {
       const data = await response.json();
 
-      this.setState({ sales: data["Sales Record"] });
+      this.setState({ sales: data["sales_record"] });
     }
   }
 
