@@ -1,7 +1,7 @@
 import React from "react";
 
 
-class ManufacturerCreateForm extends React.Component{
+class ManufacturerCreateForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -10,10 +10,10 @@ class ManufacturerCreateForm extends React.Component{
         this.handleNameChange = this.handleNameChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
-    async handleSubmit(event){
+    async handleSubmit(event) {
         event.preventDefault();
-        const data = {...this.state};
-        // console.log(data)
+        const data = { ...this.state };
+
 
 
         const manufacturerUrl = "http://localhost:8100/api/manufacturers/";
@@ -27,7 +27,7 @@ class ManufacturerCreateForm extends React.Component{
         const response = await fetch(manufacturerUrl, fetchConfig);
         if (response.ok) {
             const newManfacturer = await response.json();
-            // console.log(newManfacturer) 
+
 
 
             const cleared = {
@@ -39,26 +39,26 @@ class ManufacturerCreateForm extends React.Component{
 
     handleNameChange(event) {
         const value = event.target.value;
-        this.setState({name: value})
+        this.setState({ name: value })
     }
 
 
     render() {
-        return(
+        return (
             <div className="row">
-            <div className="offset-3 col-6">
-              <div className="shadow p-4 mt-4">
-                <h1>Create a manufacturer</h1>
-                <form onSubmit={this.handleSubmit} id="create-presentation-form">
-                  <div className="form-floating mb-3">
-                    <input onChange={this.handleNameChange} value={this.state.name} placeholder="Name" required type="text" id="name" className="form-control" />
-                    <label htmlFor="name">Name</label>
-                  </div>
-                  <button className="btn btn-primary">Create</button>
-                </form>
-              </div>
+                <div className="offset-3 col-6">
+                    <div className="shadow p-4 mt-4">
+                        <h1>Create a manufacturer</h1>
+                        <form onSubmit={this.handleSubmit} id="create-presentation-form">
+                            <div className="form-floating mb-3">
+                                <input onChange={this.handleNameChange} value={this.state.name} placeholder="Name" required type="text" id="name" className="form-control" />
+                                <label htmlFor="name">Name</label>
+                            </div>
+                            <button className="btn btn-primary">Create</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
         );
     }
 }

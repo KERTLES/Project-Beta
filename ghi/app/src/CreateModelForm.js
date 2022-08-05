@@ -21,7 +21,6 @@ class ModelForm extends React.Component {
 
     handleManufacturerChange(event) {
         const value = event.target.value;
-        // console.log(value)
         this.setState({ manufacturer: value })
     }
 
