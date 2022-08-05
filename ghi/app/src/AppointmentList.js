@@ -4,6 +4,7 @@ class AppointmentList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      appointment: '',
       appointments: []
     }
     this.handleChangeStatus = this.handleChangeStatus.bind(this);
@@ -20,13 +21,10 @@ class AppointmentList extends React.Component {
 
 
   async handleChangeStatus(event) {
-    const data = {...this.state};
-    const appointmentId = data.appointments
-    
-    const appointmentUlr = `http://localhost:8080/api/appointments/${appointmentId.id}/status/`;
+    const appointment = event.target.value;
+    const appointmentUlr = `http://localhost:8080/api/appointments/${appointment}/status/`;
     const fetchConfig = {
       method: "put",
-      body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -43,6 +41,7 @@ class AppointmentList extends React.Component {
     return (
       <>
       <h2>Service appointments</h2>
+      <form>
       <table className="table table-striped">
       <thead>
         <tr>
@@ -68,10 +67,10 @@ class AppointmentList extends React.Component {
               <td>{ auto.reason }</td>
               <td>{ auto.is_vip ? 'Yes' : 'No'}</td>
               <td>
-                <button type="button" className="btn btn-danger">Cancle</button>
+                <button onClick={e => this.handleChangeStatus(e)} value={auto.id} type="button" className="btn btn-danger">Cancle</button>
               </td>
               <td>
-                <button type="button" onClick={() => this.handleChangeStatus(auto.id)} className="btn btn-success">Finish</button>
+                <button onClick={e => this.handleChangeStatus(e)} value={auto.id} type="button" className="btn btn-success">Finish</button>
               </td>
             </tr>
           );
@@ -79,6 +78,7 @@ class AppointmentList extends React.Component {
         })}
       </tbody>
     </table>
+    </form>
     </>
     );
   }

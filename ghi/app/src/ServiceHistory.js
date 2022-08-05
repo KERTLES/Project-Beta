@@ -47,6 +47,7 @@ function ServiceHistory(props){
                     <div className="search">
                         <i className="fa fa-search"></i>
                         <input type="text" className="form-control" placeholder="Enter VIN" onChange={handleFilter} />
+                        <button className="btn btn-primary">Search VIN</button>
                     </div>
                     </div>
                 </div>
