@@ -1,4 +1,3 @@
-from sqlite3 import IntegrityError
 from django.views.decorators.http import require_http_methods
 import json
 from common.json import ModelEncoder
@@ -31,7 +30,7 @@ class AutoVODetailEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
         "vin",
-        # "name"
+        "name"
     ]
 
 
@@ -45,6 +44,15 @@ class SalesListEncoder(ModelEncoder):
     ]
     encoders = {"vin": AutoVODetailEncoder(), "customer": CustomerListEncoder(
     ), "sales_person": SalesPersonDetailEncoder()}
+
+
+@require_http_methods(["GET"])
+def api_list_AutomovileVOs(request):
+    if request.method == "GET":
+        automobiles = AutomobileVO.objects.all()
+        return JsonResponse(
+            {"automobiles": automobiles},
+            encoder=AutoVODetailEncoder)
 
 
 @require_http_methods(["GET", "POST"])
@@ -78,7 +86,7 @@ def api_list_sales(request, sales_person_id=None):
             content["vin"] = automobile
 
             salesPerson = content["sales_person"]
-            sales_person = SalesPerson.objects.get(employee_number=salesPerson)
+            sales_person = SalesPerson.objects.get(id=salesPerson)
             content["sales_person"] = sales_person
 
             customer_id = content["customer"]
@@ -110,7 +118,7 @@ def salesPerson_list_view(request, auto_vin=None):
             sales_person = SalesPerson.objects.all()
 
             return JsonResponse(
-                {"sales person": sales_person},
+                {"sales_persons": sales_person},
                 encoder=SalesPersonDetailEncoder,)
 
     else:

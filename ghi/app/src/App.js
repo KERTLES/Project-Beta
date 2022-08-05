@@ -16,6 +16,7 @@ import CustomerForm from './CreateCustomerForm';
 import CreateSalesPersonForm from './CreateSalesPersonForm';
 import ListSales from './ListSales';
 import SalesHistory from './SalesPersonHistory';
+import CreateSalesRecordForm from './CreateSaleRecordForm';
 
 
 function App(props) {
@@ -38,6 +39,7 @@ function App(props) {
           <Route path='inventory'>
             <Route index element={<AutomobileInventoryList automobiles={props.automobiles} />} />
           </Route>
+          <Route path="sales/create" index element={<CreateSalesRecordForm/>} />
           <Route path="sales/list" index element={<ListSales />} />
           <Route path='salesperson/history/' element={<SalesHistory />} />
           <Route path='service'>
