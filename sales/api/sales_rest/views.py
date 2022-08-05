@@ -54,12 +54,12 @@ def api_list_sales(request, sales_person_id=None):
             sale = SalesRecord.objects.all()
 
             return JsonResponse(
-                {"Sales Record": sale},
+                {"sales_record": sale},
                 encoder=SalesListEncoder)
 
         else:
             sales = SalesRecord.objects.filter(sales_person=sales_person_id)
-            return JsonResponse({"Sales record": sales}, encoder=SalesListEncoder,)
+            return JsonResponse({"sales_record": sales}, encoder=SalesListEncoder,)
 
     else:
         content = json.loads(request.body)

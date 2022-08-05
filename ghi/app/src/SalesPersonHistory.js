@@ -18,7 +18,6 @@ class SalesHistory extends React.Component {
         }
         this.handleSalesPersonChange = this.handleSalesPersonChange.bind(this)
 
-
     }
 
     async componentDidMount() {
@@ -28,16 +27,33 @@ class SalesHistory extends React.Component {
             const data = await response.json();
 
             this.setState({ sales_persons: data["sales person"] })
-
-            // console.log(data)
-            // this.state.sales_persons = data.sales_persons
             // console.log(this.state.sales_persons)
         }
+
+        // const salesRecordUrl = `http://localhost:8090/api/sales/`
+
+
     }
 
-    async componentDidUpdate() {
-        
-    }
+    // async componentDidUpdate(){
+    //     // const url = `http://localhost:8090/api/sales/${id}/`
+
+    //     const response = await fetch(url)
+    //     const results = await response.json()
+    //     console.log(results.sales_record)
+
+
+    //     let newArray = await results.sales_record.splice('') 
+    //     console.log(newArray)
+    //     this.setState( {search_results: (newArray)})
+
+    //     this.setState({search_results: newArray})
+    //     console.log(this.state.search_results[0])
+
+
+    // }
+
+
 
     async handleSalesPersonChange(event) {
 
@@ -46,27 +62,56 @@ class SalesHistory extends React.Component {
         const eventData = { ...this.state }
         eventData.sales_person = eventData.sales_persons[id]
         delete eventData.sales_persons
-        // console.log(eventData)
+        console.log(eventData)
 
 
 
         // console.log(dataSales.target)
         // console.log(id)
 
-        let url = `http://localhost:8090/api/sales/${id}/`
+        const url = `http://localhost:8090/api/sales/${id}/`
 
-        const response = await fetch(url).then((response) => response.json()).then((record) => {
-            // this.setState({search_results: record})
-                // this.state.search_results = (record)
-                this.setState({search_results: record})
-                
-                //we need to use setState, because it tells react to rerender page
-                //but setState is undefined if we pass in {search_result: record}
-                //It does work with 60, but setState isn't used so page isn't getting rendered 
 
-            
-        })
-     
+        const response = await fetch(url)
+        const results = await response.json()
+        console.log("TESTTTT", results.sales_record)
+
+
+        // let newArray = await results.sales_record.splice('') 
+        // console.log(newArray)
+        // this.setState( {search_results: (newArray)})
+
+        // this.setState({search_results: results.sales_record})
+        // console.log(this.state.search_results)
+
+
+        this.setState({ search_results: results.sales_record })
+        // console.log(this.state.search_results, "results");
+        // this.setState({search_results: results})
+
+
+
+        console.log(this.state.search_results)
+
+        // console.log(results)
+        // this.setState({ search_results: results.sales_record })
+        // console.log(this.search_results)
+        // this.state.search_results.push(results.sales_record)
+
+        // let newStateArray = results.sales_record.slice()
+        // this.state.search_results.push(newStateArray)
+        // console.log(this.state.search_results)
+
+
+        // console.log(newStateArray)
+        // this.state.search_results = results.sales_record
+        // this.setState({search_results: results.sales_record})
+
+
+        // this.setState({search_results: temp})
+        // this.setState({search_results: newStateArray})
+        // console.log(this.state.search_results)
+
 
     }
 
@@ -81,7 +126,7 @@ class SalesHistory extends React.Component {
 
                         <select onChange={this.handleSalesPersonChange} className="form-select" aria-label="Default select example">
                             <option >Select a name</option>
-                            {this.state.sales_persons?.map(sales_person => {
+                            {this.state.sales_persons.map(sales_person => {
                                 return (
                                     <option value={sales_person.id} key={sales_person.employee_number}>
                                         {sales_person.name}
@@ -105,34 +150,28 @@ class SalesHistory extends React.Component {
                         <tbody>
 
                             {this.state.search_results.map(sale => {
-                                <div>fds</div>
+                                // <div>TEST!!!!</div>
+                                // <div>fdnjsfndsfdsfdsfds</div>
                                 return (
-                                    <tr><td>hello</td>
-                                        <td>{sale.sales_person}</td></tr>
+                                    <tr key={sale.vin.vin}>
+                                        <td>{sale.sales_person.name}</td>
+
+                                        <td>{sale.customer.name}</td>
+
+                                        <td>{sale.vin.vin}</td>
+                                    
+
+                                        <td>{`${toString(sale.price)}`}</td>
+                                    </tr>
 
                                 );
+
 
 
                             }
                             )}
 
-                            {/* <tr><td>{this.state.search_results[0]}</td></tr> */}
-                            {/* <div>first</div> */}
-                            {/*this.state.search_results.map(record => {
-                                <p>printing</p>
-                                return (
-                                    <tr key={record.record.vin.vin}>
-                                        <td>{record.sales_person.name}</td>
-                                        <td>{record.customer.name}</td>
-                                        <td>{record.vin.vin}</td>
-                                        {/* <td>{record.price}</td> */}
 
-                            {/* <td>{`${toString(record.price)}`}</td>
-
-                                    </tr>
-                                );
-                            }
-                            )}*/}
                         </tbody>
                     </table>
 
@@ -147,6 +186,18 @@ class SalesHistory extends React.Component {
 
 }
 export default SalesHistory;
+
+// return (
+// <tr key={record.record.vin.vin}>
+//     <td>{record.sales_person.name}</td>
+//     <td>{record.customer.name}</td>
+//     <td>{record.vin.vin}</td>
+{/* <td>{record.price}</td> */ }
+
+//* <td>{`${toString(record.price)}`}</td>
+
+//     </tr>
+// );
 
 
 // function SalesHistory(props) {
