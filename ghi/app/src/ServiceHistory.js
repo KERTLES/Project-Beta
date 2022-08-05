@@ -47,12 +47,11 @@ function ServiceHistory(props){
                     <div className="search">
                         <i className="fa fa-search"></i>
                         <input type="text" className="form-control" placeholder="Enter VIN" onChange={handleFilter} />
-                        <button className="btn btn-primary">Search VIN</button>
                     </div>
                     </div>
                 </div>
         </div>
-        {filteredData.length != 0 && (
+       
         <table className="table table-striped">
       <thead>
         <tr>
@@ -64,6 +63,7 @@ function ServiceHistory(props){
           <th>Reason</th>
         </tr>
       </thead>
+      {filteredData.length != 0 && (
       <tbody>
         {filteredData.map(item => {
           return (
@@ -78,8 +78,9 @@ function ServiceHistory(props){
           );
         })}
       </tbody>
+      )}
     </table>
-    )}
+
     </>      
     );        
 }
