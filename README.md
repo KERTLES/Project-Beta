@@ -2,7 +2,7 @@
 
 Team:
 
-* Person 1 - Which microservice?
+* Kurt Greenacre - Service
 * Kelly Jiang - Sales
 
 ## Design
