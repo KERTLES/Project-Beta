@@ -32,9 +32,8 @@ class AppointmentList extends React.Component {
     const response = await fetch(appointmentUlr, fetchConfig);
     if (response.ok) {
       const newStatus = await response.json();
-      console.log(newStatus)
-
-  }
+    }
+    window.location.reload(false);
   }
 
   render() {
