@@ -65,11 +65,11 @@ class CreateSalesPersonForm extends React.Component {
                         <h1>Create a Sales Person</h1>
                         <form onSubmit={this.handleOnSubmit} id="create-auto-form">
                             <div className="form-floating mb-3">
-                                <input onChange={this.handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
+                                <input onChange={this.handleNameChange} value={this.state.name} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
                                 <label htmlFor="name">Name</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input onChange={this.handleEmployeeNumChange} placeholder="Employee Number" required type="text" name="employee_number" id="employee_number" className="form-control" />
+                                <input onChange={this.handleEmployeeNumChange} value={this.state.employee_number} placeholder="Employee Number" required type="text" name="employee_number" id="employee_number" className="form-control" />
                                 <label htmlFor="employee_number">Employee Number</label>
                             </div>
 
