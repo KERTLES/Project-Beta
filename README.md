@@ -21,7 +21,7 @@ Explain your models and integration with the inventory
 microservice, here.
 
 There are three models Technician, Appointment, and AutomobileVO. Technician contains the name of the employee and the employees number. 
-The Appointment model has a vin, customer name, date of service, time of service, the technician, the reason for service, vip, and appointment status. In Appointment the technician is related to the Technician model with a ForeignKey to allow you to select a technician when creating a new service appointment. Vip is a boolean value that is used to determine if a customer is a VIP. Status is also a boolean value to defermine the status of appointment for the cancle and finish buttons.
+The Appointment model has a vin, customer name, date of service, time of service, the technician, the reason for service, vip, and appointment status. In Appointment the technician is related to the Technician model with a ForeignKey to allow you to select a technician when creating a new service appointment. Vip is a boolean value that is used to determine if a customer is a VIP. Status is also a boolean value to determine the status of appointment for the cancle and finish buttons.
 The AutomobileVO is the link between the service microservice and the Automobile model in the inventory micrservice. They are conected by poller in the service microservice. The only thing taken from Automobile in the inventory microservice for the AutomobileVO model was the vin. The vin in AutomobileVO is then used to compare to the vin in Appointment to detrmine if a customer is a VIP.
 
 ## Sales microservice

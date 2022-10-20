@@ -36,7 +36,7 @@ class ListModels extends React.Component {
             <tr key={model.id}>
               <td>{ model.name }</td>
               <td>{ model.manufacturer.name}</td>
-              <td><img src={model.picture_url} alt="car" /></td>
+              <td><img src={model.picture_url} alt="car" width="200" /></td>
             </tr>
           );
         })}
